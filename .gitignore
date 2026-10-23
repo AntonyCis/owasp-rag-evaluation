@@ -1,0 +1,40 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Índices y bases vectoriales generados
+# (se reconstruyen desde el corpus; no los versionamos)
+data/index/
+chroma_db/
+faiss_index/
+*.faiss
+
+# Resultados de ejecuciones de evaluación
+# (si quieres publicar resultados, muévelos a reports/ y quítalo de aquí)
+eval/results/
+*.log
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
