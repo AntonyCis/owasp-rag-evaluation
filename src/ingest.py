@@ -82,6 +82,18 @@ def extraer_secciones(html_path: Path, slug: str) -> list[dict]:
             })
     return secciones
 
+def trocear(texto: str, palabras: int = 60, solape: int = 15) -> list[str]:
+    """Divide un texto en trozos de unas 60 palabras con solapamiento, para no superar el límite del modelo."""
+    lista = texto.split()
+    trozos = []
+    i = 0
+    while i < len(lista):
+        trozos.append(" ".join(lista[i:i + palabras]))
+        if i + palabras >= len(lista):
+            break
+        i += palabras - solape
+    return trozos
+
 def main() -> None:
     fragmentos = []
     for slug in CATEGORIAS:
@@ -89,13 +101,23 @@ def main() -> None:
         fragmentos.extend(extraer_secciones(ruta, slug))
         print(f"OK: {slug}")
 
+    # Troceamos cada sección una sola vez, después de extraerlas todas
+    fragmentos_finales = []
+    for f in fragmentos:
+        for trozo in trocear(f["texto"]):
+            fragmentos_finales.append({
+                "fuente": f["fuente"],
+                "fuente_seccion": f["fuente_seccion"],
+                "texto": trozo,
+            })
+
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     with OUTPUT.open("w", encoding="utf-8") as f:
-        for i, frag in enumerate(fragmentos, start=1):
+        for i, frag in enumerate(fragmentos_finales, start=1):
             frag["chunk_id"] = f"c{i:04d}"
             f.write(json.dumps(frag, ensure_ascii=False) + "\n")
 
-    print(f"Listo: {len(fragmentos)} fragmentos en {OUTPUT}")
+    print(f"Listo: {len(fragmentos_finales)} fragmentos en {OUTPUT}")
 
 if __name__ == "__main__":
     main()
