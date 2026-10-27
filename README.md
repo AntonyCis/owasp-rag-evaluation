@@ -36,7 +36,7 @@ owasp-rag-evaluation/
 
 ## Estado
 
-- [x] Dataset de evaluación v1 (7 preguntas)
+- [x] Dataset de evaluación v1 (25 preguntas)
 - [ ] Ingesta y limpieza del corpus
 - [ ] Indexación y recuperación
 - [ ] Generación de respuestas
@@ -50,7 +50,7 @@ owasp-rag-evaluation/
 
 ## Limitaciones
 
-- El dataset es pequeño (7 preguntas en la v1) y servirá para validar el pipeline, no para conclusiones estadísticas.
+- El dataset es pequeño (25 preguntas en la v1) y servirá para validar el pipeline, no para conclusiones estadísticas.
 - Las respuestas de referencia fueron escritas manualmente y pueden contener sesgos del autor.
 
 ## Autor
