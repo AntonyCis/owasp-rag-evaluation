@@ -61,6 +61,15 @@ def extraer_secciones(html_path: Path, slug: str) -> list[dict]:
         if titulo_original not in MAPA_SECCIONES:
             continue
 
+        seccion = MAPA_SECCIONES[titulo_original]
+
+        # Las listas de CWEs son códigos sin texto explicativo: ruido para la recuperación
+        if seccion == "CWEs asociados":
+            continue
+        # Antecedentes solo tiene estadísticas generales: experimento de esta rama
+        if seccion == "Antecedentes":
+            continue
+
         partes = []
         for elemento in encabezado.find_all_next(["p", "li", "h1", "h2", "h3"]):
             if elemento.name in ("h1", "h2", "h3"):
@@ -70,14 +79,10 @@ def extraer_secciones(html_path: Path, slug: str) -> list[dict]:
                 partes.append(texto)
 
         texto_seccion = " ".join(partes)
-        # Las listas de CWEs son códigos sin texto explicativo: ruido para la recuperación
-        if MAPA_SECCIONES[titulo_original] == "CWEs asociados":
-            continue
-
         if texto_seccion:
             secciones.append({
                 "fuente": fuente,
-                "fuente_seccion": MAPA_SECCIONES[titulo_original],
+                "fuente_seccion": seccion,
                 "texto": texto_seccion,
             })
     return secciones
