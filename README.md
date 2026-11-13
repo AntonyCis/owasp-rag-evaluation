@@ -25,6 +25,29 @@ El archivo `eval/questions.jsonl` contiene preguntas de referencia, una por lín
 
 El dataset se versiona en Git. Cualquier cambio queda registrado en el historial.
 
+## Resultados de evaluación
+
+Medición sobre el dataset v2 (25 preguntas) y el corpus de OWASP Top 10 2025, con 217 fragmentos indexados. Recuperación con embeddings `paraphrase-multilingual-MiniLM-L12-v2`, similitud coseno, top 3.
+
+| Métrica | Resultado |
+|---|---|
+| Recall@3 categoría | 21/25 (84%) |
+| Recall@3 sección flexible | 19/25 (76%) |
+| Recall@3 sección estricta | 13/25 (52%) |
+
+**Definiciones:**
+
+- **Categoría:** la categoría OWASP correcta aparece entre los 3 primeros resultados.
+- **Sección flexible:** aparece la sección exacta del dataset, o la "Descripción" de la misma categoría.
+- **Sección estricta:** aparece exactamente la sección indicada en el dataset.
+
+**Fallos conocidos:**
+
+- Cuatro preguntas fallan incluso a nivel de categoría (q009, q010, q018, q023). Están pendientes de revisión: en algunos casos la redacción de la pregunta puede ser ambigua.
+- La métrica estricta penaliza respuestas que están en la categoría correcta pero en una sección cercana. Por eso se reporta también la flexible.
+
+Medición realizada el 13/11/2026.
+
 ## Estructura del proyecto
 
 ```
