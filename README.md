@@ -48,6 +48,9 @@ Medición sobre el dataset v2 (25 preguntas) y el corpus de OWASP Top 10 2025, c
 
 Medición realizada el 13/11/2026.
 
+**Casos difíciles:**
+- **q009** ("cuentas predeterminadas con contraseñas de fábrica"): el término "contraseñas" atrae resultados de criptografía y autenticación (A04 y A07). Con una redacción sin esa palabra, el sistema recupera A02 en primer lugar. Se mantiene en el dataset como caso adverso para medir la sensibilidad al léxico.
+
 ## Estructura del proyecto
 
 ```
