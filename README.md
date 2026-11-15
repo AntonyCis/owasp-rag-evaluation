@@ -7,7 +7,7 @@ El objetivo no es solo construir un chatbot, sino **medir** si las respuestas so
 ## Corpus
 
 - **Fuente:** OWASP Top 10 2025 (https://top10.owasp.org/2025/)
-- **Fecha de consulta:** DD/MM/2026 (completar con la fecha real de descarga)
+- **Fecha de consulta:** 13/11/2026 
 - **Alcance:** las 10 categorías, con sus secciones de Antecedentes, Descripción, Cómo prevenir, Escenarios de ataque y Referencias. La sección de CWEs asociados se excluye por ser listas de códigos sin texto explicativo.
 - **Procesamiento:** cada sección se divide en trozos de unas 60 palabras con solapamiento de 15, para no superar el límite de tokens del modelo de embeddings. Resultado: 217 fragmentos indexados.
 
