@@ -51,6 +51,7 @@ Medición realizada el 13/11/2026.
 **Casos difíciles:**
 - **q009** ("cuentas predeterminadas con contraseñas de fábrica"): el término "contraseñas" atrae resultados de criptografía y autenticación (A04 y A07). Con una redacción sin esa palabra, el sistema recupera A02 en primer lugar. Se mantiene en el dataset como caso adverso para medir la sensibilidad al léxico.
 - **q010** ("compromete un sistema a través de dependencias externas"): la etiqueta correcta es A03 (Software Supply Chain Failures), pero A08 (Software or Data Integrity Failures) también describe el mismo escenario en su sección Descripción, que menciona plugins, librerías de fuentes no confiables y pipelines CI/CD. En las variantes probadas, el sistema recuperó A03 en primer lugar en una de cuatro y A08 en otra. Se mantiene como caso de frontera entre categorías.
+- **q018** ("controles para gestionar el riesgo de componentes y dependencias externas"): la etiqueta correcta es A03 (Software Supply Chain Failures), "Cómo prevenir". El término genérico "controles" atrae resultados de A09 "Cómo prevenir" (monitoreo y controles) y de A06. Solo una de las cuatro variantes probadas recupera A03 en primer lugar. Se mantiene como caso adverso por ambigüedad de la redacción.
 
 ## Estructura del proyecto
 
