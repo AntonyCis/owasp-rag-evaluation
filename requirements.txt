@@ -1,1 +1,5 @@
-python -m pip freeze | findstr /i "gradio sentence-transformers chromadb requests numpy"
+gradio[oauth,mcp]==6.32.0
+sentence-transformers
+chromadb
+requests
+numpy
