@@ -1,6 +1,8 @@
+import spaces
 import os
-import sys
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
+import sys
 import chromadb
 import gradio as gr
 import requests
