@@ -1,0 +1,25 @@
+{"id": "q001", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.664}
+{"id": "q002", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.86}
+{"id": "q003", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.721}
+{"id": "q004", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.45}
+{"id": "q005", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.831}
+{"id": "q006", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.561}
+{"id": "q007", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.61}
+{"id": "q008", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.808}
+{"id": "q009", "tipo": "no_fiel", "motivo": "La respuesta añade ‘control total del sistema’ como consecuencia, que no aparece en los fragmentos. No menciona la brecha por configuración incorrecta, que es el concepto de la categoría A02 pedida, porque el contexto recuperado es de A04 y A07.", "fidelidad_metrica": 0.658}
+{"id": "q010", "tipo": "negativa", "motivo": "", "fidelidad_metrica": 0.245}
+{"id": "q011", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.471}
+{"id": "q012", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.858}
+{"id": "q013", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.6}
+{"id": "q014", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.742}
+{"id": "q015", "tipo": "no_fiel", "motivo": "La respuesta recomienda consultas parametrizadas y validación de entradas, que no aparecen en los fragmentos recuperados. Las medidas que sí tienen respaldo son las de A09 (auditoría, rollback, alertas).", "fidelidad_metrica": 0.581}
+{"id": "q016", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.583}
+{"id": "q017", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.801}
+{"id": "q018", "tipo": "negativa", "motivo": "", "fidelidad_metrica": 0.162}
+{"id": "q019", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.67}
+{"id": "q020", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.844}
+{"id": "q021", "tipo": "no_fiel", "motivo": "La respuesta omite MFA y las políticas de contraseñas, que son el núcleo de la pregunta y aparecen en A07, y su primer punto trata control de acceso en lugar de autenticación.", "fidelidad_metrica": 0.716}
+{"id": "q022", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.749}
+{"id": "q023", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.746}
+{"id": "q024", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.73}
+{"id": "q025", "tipo": "fiel", "motivo": "", "fidelidad_metrica": 0.623}

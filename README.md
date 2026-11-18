@@ -108,6 +108,25 @@ Comparación entre la etiqueta manual y la métrica automática sobre las 25 res
 
 Los datos de etiquetado están en `eval/etiquetas_fidelidad.jsonl`, las respuestas generadas en `eval/respuestas_generadas.jsonl`, y el análisis en `comparar_fidelidad.py`.
 
+### Comparación de modelos de generación
+
+Se generaron las mismas 25 respuestas con dos modelos, usando exactamente el mismo contexto recuperado (3 fragmentos por pregunta), y se etiquetaron a mano con el mismo criterio.
+
+| Modelo | Ejecución | Fieles | No fieles | Negativas honestas | AUC de similitud |
+|---|---|---|---|---|---|
+| `qwen2.5:1.5b` (local, CPU) | Ollama | 9 | 16 | 0 | 0.694 |
+| `openai/gpt-oss-20b` (Groq, API gratuita) | Groq | 20 | 3 | 2 | 0.683 |
+
+**Cómo leer esta tabla:**
+
+- El AUC mide cuánto separa la similitud automática a las respuestas fieles de las no fieles. Un valor de 0.5 significa que no separa; 1.0, que separa perfectamente.
+- Los dos modelos tienen AUC similares (0.694 y 0.683), pero el conjunto de no fieles de Groq tiene solo 3 casos. Un AUC calculado sobre tan pocos negativos cambia mucho con una sola etiqueta, así que **no permite afirmar que un modelo sea más fiel que el otro**.
+- Las tasas de respuestas no fieles (16 de 25 en qwen, 3 de 23 en Groq) sugieren que el modelo más grande inventa menos, pero con estos tamaños de muestra es una tendencia, no una conclusión.
+
+**Hallazgo sobre la métrica:** las dos respuestas honestas de Groq ("no hay información suficiente en el contexto") son las de menor similitud del conjunto (0.245 y 0.162). La métrica penaliza las negativas correctas porque no comparten vocabulario con los fragmentos. Eso significa que la similitud no debe usarse para premiar respuestas, solo para detectar afirmaciones sin respaldo, y aun así con limitaciones.
+
+**Lo que sí queda claro:** el etiquetado manual cambia más el resultado que la elección del modelo. Con un conjunto de 25 preguntas y una sola etiquetadora, cualquier comparación entre modelos debe leerse como exploratoria.
+
 ## Historial de evaluación
 
 | Versión | Preguntas | Categoría | Sección flexible | Sección estricta | Cambio |
