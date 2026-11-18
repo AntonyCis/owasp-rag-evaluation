@@ -58,6 +58,14 @@ La métrica estricta es la más exigente, y en ocasiones penaliza respuestas cor
 
 - La sección "Cómo prevenir" de A09 tiene vocabulario muy genérico (controles, registros, alertas) y aparece en el top 3 de consultas que hablan de controles en general, aunque traten de otros temas. Afecta a q018. Se documenta como propiedad del corpus, no como fallo de la recuperación.
 
+### Filtro por categoría
+
+Cuando la pregunta nombra una categoría (por ejemplo, "A01:2025"), la búsqueda se limita a los fragmentos de esa categoría y solo completa con búsqueda general si no hay suficientes. Sin ese filtro, el recuperador mezclaba categorías con vocabulario parecido.
+
+- **Efecto medido:** la recuperación por categoría se mantuvo (22/25), la flexible también (20/25), y la estricta subió de 14/25 a 15/25. La mejora está en q001, donde el primer resultado pasó a ser la sección correcta de A01.
+- **Límite:** el filtro solo se activa cuando la pregunta contiene el código de categoría. Para preguntas sin código, la búsqueda sigue siendo general y puede traer fragmentos de otras categorías (por ejemplo, la pregunta sobre deserialización insegura recupera A02 y A05 junto a A08).
+- **Hallazgo:** el filtro corrige la recuperación, pero no la fidelidad. Con el modelo local, una pregunta bien recuperada puede seguir obteniendo una respuesta imprecisa.
+
 ## Evaluación de fidelidad de respuestas
 
 Además de la recuperación, el proyecto mide si las respuestas generadas por un modelo local (`qwen2.5:1.5b`, vía Ollama, con CPU) son fieles a los fragmentos recuperados. La fidelidad no es lo mismo que la corrección: una respuesta puede ser fiel al contexto y aun así incorrecta, o correcta y no fiel si añade información que la fuente no respalda.
