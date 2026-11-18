@@ -14,6 +14,8 @@ Sistema RAG (Retrieval-Augmented Generation) que responde preguntas sobre el **O
 
 El objetivo no es solo construir un chatbot, sino **medir** si las respuestas son correctas, fieles a la fuente y basadas en el documento correcto.
 
+Demo en línea: https://huggingface.co/spaces/Antociss11/owasp-rag
+
 ## Corpus
 
 - **Fuente:** OWASP Top 10 2025 (https://top10.owasp.org/2025/)
