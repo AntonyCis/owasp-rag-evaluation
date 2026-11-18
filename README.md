@@ -1,3 +1,13 @@
+---
+title: OWASP RAG
+emoji: 🛡️
+colorFrom: blue
+colorTo: red
+sdk: gradio
+app_file: app.py
+pinned: false
+---
+
 # OWASP RAG Evaluation
 
 Sistema RAG (Retrieval-Augmented Generation) que responde preguntas sobre el **OWASP Top 10 2025**, con un framework de evaluación medible para su calidad de recuperación y de respuesta.
