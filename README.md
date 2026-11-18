@@ -58,6 +58,48 @@ La métrica estricta es la más exigente, y en ocasiones penaliza respuestas cor
 
 - La sección "Cómo prevenir" de A09 tiene vocabulario muy genérico (controles, registros, alertas) y aparece en el top 3 de consultas que hablan de controles en general, aunque traten de otros temas. Afecta a q018. Se documenta como propiedad del corpus, no como fallo de la recuperación.
 
+## Evaluación de fidelidad de respuestas
+
+Además de la recuperación, el proyecto mide si las respuestas generadas por un modelo local (`qwen2.5:1.5b`, vía Ollama, con CPU) son fieles a los fragmentos recuperados. La fidelidad no es lo mismo que la corrección: una respuesta puede ser fiel al contexto y aun así incorrecta, o correcta y no fiel si añade información que la fuente no respalda.
+
+### Método
+
+1. Para cada una de las 25 preguntas, se recuperan los 3 fragmentos más cercanos y se genera una respuesta con el modelo, usando solo esos fragmentos como contexto.
+2. **Métrica automática:** la respuesta se divide en frases. Para cada frase se calcula su similitud coseno máxima con los fragmentos recuperados (mismo modelo de embeddings que la recuperación). La fidelidad de la respuesta es la media de esas similitudes.
+3. **Etiquetado manual:** cada respuesta se marca como fiel o no fiel comparándola con los fragmentos. Se marca "no fiel" solo si contiene al menos una afirmación concreta que no aparece ni se deduce de los fragmentos recuperados.
+
+### Resultados
+
+Comparación entre la etiqueta manual y la métrica automática sobre las 25 respuestas:
+
+| Grupo | n | Mediana de similitud | Rango |
+|---|---|---|---|
+| Fieles (etiqueta manual) | 9 | 0.701 | 0.470 – 0.922 |
+| No fieles (etiqueta manual) | 16 | 0.611 | 0.525 – 0.840 |
+
+**AUC: 0.694.** Un AUC de 0.5 significa que la métrica no separa los grupos, y 1.0 que los separa perfectamente. Con 0.694, la métrica ordena bien a una respuesta fiel frente a una no fiel unas 7 de cada 10 veces. Es una señal, no un juicio.
+
+**Casos de contraste:**
+
+- **q011** (no fiel, similitud 0.840): repite un bloque de la lista, expande SBOM incorrectamente y omite el núcleo de la pregunta. Tiene frases muy parecidas al contexto y aun así es infiel.
+- **q010** (no fiel, similitud 0.755): atribuye a la deserialización insegura un compromiso por dependencias externas. La frase existe en el contexto, pero responde otra pregunta.
+- **q012** (fiel, similitud 0.886): sus afirmaciones están directamente en el fragmento de A06 Descripción.
+- **q008** (fiel, similitud 0.470): respuesta breve y correcta, con poco vocabulario compartido con el contexto. La métrica la penaliza por brevedad, no por infidelidad.
+
+### Hallazgos
+
+- **La similitud mide adherencia al contexto, no veracidad.** Las respuestas infieles con frases parafraseadas del contexto obtienen puntuaciones altas.
+- **Buena parte de las respuestas infieles vienen de un recuperador que no trajo la sección correcta.** En las preguntas de prevención (q007, q013, q015, q021), los fragmentos recuperados eran de otras categorías o secciones, y el modelo respondió con lo que tenía. Eso vincula el problema de generación con el de recuperación.
+
+### Limitaciones
+
+- 25 casos, con un solo etiquetador (el autor del proyecto).
+- El criterio de etiquetado es subjetivo en respuestas largas. El criterio exacto está descrito arriba.
+- El modelo de generación es pequeño (1.5B parámetros) y ejecutado en CPU. Los resultados no se pueden extrapolar a modelos más grandes.
+- La métrica depende del tamaño de los fragmentos (unas 60 palabras) y del modelo de embeddings.
+
+Los datos de etiquetado están en `eval/etiquetas_fidelidad.jsonl`, las respuestas generadas en `eval/respuestas_generadas.jsonl`, y el análisis en `comparar_fidelidad.py`.
+
 ## Historial de evaluación
 
 | Versión | Preguntas | Categoría | Sección flexible | Sección estricta | Cambio |
