@@ -132,8 +132,10 @@ owasp-rag-evaluation/
 - [x] Dataset de evaluación v3 (25 preguntas)
 - [x] Ingesta y limpieza del corpus
 - [x] Indexación y recuperación
-- [ ] Generación de respuestas
-- [ ] Métricas de fidelidad de respuesta
+- [x] Generación de respuestas (modelo local, qwen2.5:1.5b)
+- [x] Evaluación de fidelidad (similitud automática y etiquetado manual)
+- [ ] Juez LLM para fidelidad (pendiente)
+- [ ] Comparación con modelos más grandes vía API (pendiente)
 
 ## Stack
 
